@@ -1,0 +1,29 @@
+nav {
+    background-color: #fff;
+    padding: 20px;
+    box-shadow: 2px 0 10px rgba(0, 0, 0, 0.1);
+    height: 93vh;
+    z-index:999;
+  }
+  
+  ul {
+    list-style: none;
+    padding: 0;
+  }
+  
+  li {
+    margin: 20px 0;
+  }
+  
+  .material-icons {
+    font-size: 36px;
+  }
+  
+  a {
+    text-decoration: none;
+    color: inherit;
+  }
+  
+  a.active {
+    color: #007bff;
+  }

@@ -1,0 +1,52 @@
+<div class="contact-page">
+    <div class="contact-list pt-5">
+        <div class="search-container">
+            <input type="text" placeholder="Search contacts..." [(ngModel)]="filterText">
+            <button (click)="addContactModal.openModal()">Add</button>
+        </div>
+        <h3 class="contacts-header">CONTACTS</h3>
+      <ul>
+        <li *ngFor="let contact of filteredContacts" [class.active]="selectedContact === contact" (click)="selectContact(contact)">
+          <div class="initials">{{ getInitials(contact) }}</div>
+          <div class="contact-details">
+            <div class="fw-bold">{{ contact.firstName }} {{ contact.lastName }}</div>
+            <div>{{ contact.cellNumber }}</div>
+          </div>
+        </li>
+      </ul>
+      
+    </div>
+    <div class="main p-5" *ngIf="selectedContact">
+        <div  class="contact-details-card">
+            <h2>{{ selectedContact.firstName }} {{ selectedContact.lastName }}</h2>
+            <div class="row pt-3">
+                <div class="col-6">
+                    <p class="label">Cellphone: </p>
+                    <p>{{ selectedContact.cellNumber }}</p>
+                </div>
+                <div class="col-6">
+                    <p class="label">Address: </p>
+                    <p>{{ selectedContact.address }}</p>
+                </div>
+                <div class="col-6 pt-3">
+                    <p class="label">Email: </p>
+                    <p>{{ selectedContact.email }}</p>
+                </div>
+                <div class="col-6 pt-3">
+                    <p class="label">Agify: </p>
+                    <p>{{ selectedContact.age }}</p>
+                </div>
+            </div>
+
+        </div>
+        <div class="row pt-5">
+            <h2>Contact Bio</h2> 
+            <p>{{ selectedContact.bio }}</p>
+        </div>
+        
+        
+    </div>
+
+    <app-add-contact #addContactModal (contactAdded)="onContactAdded($event)"></app-add-contact>
+</div>
+    

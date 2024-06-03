@@ -1,0 +1,54 @@
+<div class="modal" *ngIf="show">
+    <div class="modal-content">
+      <span class="close" (click)="closeModal()">&times;</span>
+      <h2>Add Contact</h2>
+      <form (ngSubmit)="addContact(contactForm)" #contactForm="ngForm">
+        <label for="firstName">First Name:</label>
+        <input id="firstName" name="firstName" [(ngModel)]="newContact.firstName" required maxlength="50" #firstName="ngModel">
+        <div *ngIf="firstName.invalid && firstName.touched">
+          <div  class="error-message"*ngIf="firstName.errors?.['required']">First Name is required.</div>
+          <div class="error-message"*ngIf="firstName.errors?.['maxlength']">First Name cannot exceed 50 characters.</div>
+        </div>
+        
+        <label for="lastName">Last Name:</label>
+        <input id="lastName" name="lastName" [(ngModel)]="newContact.lastName" required maxlength="50" #lastName="ngModel">
+        <div *ngIf="lastName.invalid && lastName.touched">
+          <div class="error-message" *ngIf="lastName.errors?.['required']">Last Name is required.</div>
+          <div class="error-message" *ngIf="lastName.errors?.['maxlength']">Last Name cannot exceed 50 characters.</div>
+        </div>
+        
+        <label for="cellNumber">Cellphone:</label>
+        <input id="cellNumber" name="cellNumber" [(ngModel)]="newContact.cellNumber" required maxlength="15" pattern="[0-9]*" #cellNumber="ngModel">
+        <div *ngIf="cellNumber.invalid && cellNumber.touched">
+        <div class="error-message" *ngIf="cellNumber.errors?.['required']">Cellphone number is required.</div>
+        <div class="error-message" *ngIf="cellNumber.errors?.['pattern']">Cellphone number must be numeric.</div>
+        <div class="error-message" *ngIf="newContact.cellNumber && newContact.cellNumber.charAt(0) !== '0'">Cellphone number must start with 0.</div>
+        </div>
+
+        <label for="email">Email:</label>
+        <input id="email" name="email" [(ngModel)]="newContact.email" required email #email="ngModel">
+        <div *ngIf="email.invalid && email.touched">
+        <div class="error-message" *ngIf="email.errors?.['required']">Email is required.</div>
+        <div class="error-message" *ngIf="email.errors?.['email']">Invalid email format.</div>
+        </div>
+
+        <label for="address">Address:</label>
+        <input id="address" name="address" [(ngModel)]="newContact.address" required maxlength="255" #address="ngModel">
+        <div *ngIf="address.invalid && address.touched">
+          <div class="error-message" *ngIf="address.errors?.['required']">Address is required.</div>
+          <div class="error-message" *ngIf="address.errors?.['maxlength']">Address cannot exceed 255 characters.</div>
+        </div>
+        
+
+        <label for="bio">Biography:</label>
+        <input id="bio" name="bio" [(ngModel)]="newContact.bio" required maxlength="255" #bio="ngModel">
+        <div *ngIf="bio.invalid && bio.touched">
+          <div class="error-message" *ngIf="bio.errors?.['required']">Biography is required.</div>
+          <div class="error-message" *ngIf="bio.errors?.['maxlength']">Biography cannot exceed 255 characters.</div>
+        </div>
+        
+
+        <button type="submit" [disabled]="contactForm.invalid">Add Contact</button>
+      </form>
+    </div>
+  </div>
